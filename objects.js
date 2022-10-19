@@ -55,6 +55,7 @@
 //     }
 // }
 
+//Create a constructor function
 function User(email, name){
     this.email = email;
     this.name = name;
@@ -62,6 +63,7 @@ function User(email, name){
     this.score = 0;
 }
 
+//Add methods to the User class via its prototype
 User.prototype.login = function(){
     this.online = true;
     console.log(`${this.email} has logged in.`);
@@ -78,6 +80,7 @@ function Admin(...args){
     this.role = 'super admin';
 }
 
+//set the Admin prototype to the User prototype, giving access to the methods contained within the User class
 Admin.prototype = Object.create(User.prototype);
 
 Admin.prototype.deleteUser = function(user){
