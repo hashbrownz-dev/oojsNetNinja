@@ -47,12 +47,24 @@ class User{
     }
 }
 
+class Admin extends User{
+    deleteUser(user){
+        users = users.filter(u => {
+            return u.email != user.email
+        });
+    }
+}
+
 const userOne = new User('rooseveltblow@gmail.com','Roosevelt');
 const userTwo = new User('hashbrownz@thebreakfastclub.com', 'Hashbrownz');
 const userThree = new User('ninja@gaiden.com', 'Ryu Hayabusa');
+const adminOne = new Admin('kingCandy@candyland.com', 'King Candy');
 
-const users = [userOne, userTwo, userThree];
+let users = [userOne, userTwo, userThree, adminOne];
 for(let user of users){
     //user.login().logout();
     user.login().updateScore().updateScore().logout();
 }
+console.log(users);
+adminOne.deleteUser(userTwo);
+console.log(users);
