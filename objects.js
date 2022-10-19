@@ -60,41 +60,32 @@ function User(email, name){
     this.name = name;
     this.online = false;
     this.score = 0;
-    this.login = function () {
-        console.log(`${this.email} has logged in.`);
-        return this;
-    }
 }
 
-// function User(email, name){
-//     return {
-//         email : email,
-//         name : name,
-//         score : 0,
-//         login(){
-//             console.log(`${this.email} has logged in.`);
-//             return this;
-//         },
-//         logout(){
-//             console.log(`${this.email} has logged out.`);
-//             return this;
-//         },
-//         updateScore(){
-//             this.score++;
-//             console.log(`${this.email} score is now ${this.score}`);
-//             return this;
-//         }
-//     }
-// }
+User.prototype.login = function(){
+    this.online = true;
+    console.log(`${this.email} has logged in.`);
+    return this;
+}
+
+User.prototype.logout = function(){
+    this.online = false;
+    console.log(`${this.email} has logged out.`);
+}
 
 const userOne = new User('rooseveltblow@gmail.com','Roosevelt');
 const userTwo = new User('hashbrownz@thebreakfastclub.com', 'Hashbrownz');
 const userThree = new User('ninja@gaiden.com', 'Ryu Hayabusa');
 // const adminOne = new Admin('kingCandy@candyland.com', 'King Candy');
 
+//Log everyone in
 let users = [userOne, userTwo, userThree];
 for(let user of users){
     user.login();
+}
+//Log everyone out
+for(let user of users){
+    user.logout();
 }
 // console.log(users);
 // //adminOne.deleteUser(userTwo);
