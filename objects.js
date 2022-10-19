@@ -73,13 +73,24 @@ User.prototype.logout = function(){
     console.log(`${this.email} has logged out.`);
 }
 
+function Admin(...args){
+    User.apply(this,args);
+    this.role = 'super admin';
+}
+
+Admin.prototype = Object.create(User.prototype);
+
+Admin.prototype.deleteUser = function(user){
+    users = users.filter( u => { return u.email != user.email });
+};
+
 const userOne = new User('rooseveltblow@gmail.com','Roosevelt');
 const userTwo = new User('hashbrownz@thebreakfastclub.com', 'Hashbrownz');
 const userThree = new User('ninja@gaiden.com', 'Ryu Hayabusa');
-// const adminOne = new Admin('kingCandy@candyland.com', 'King Candy');
+const adminOne = new Admin('kingCandy@candyland.com', 'King Candy');
 
 //Log everyone in
-let users = [userOne, userTwo, userThree];
+let users = [userOne, userTwo, userThree, adminOne];
 for(let user of users){
     user.login();
 }
@@ -87,6 +98,8 @@ for(let user of users){
 for(let user of users){
     user.logout();
 }
-// console.log(users);
-// //adminOne.deleteUser(userTwo);
-// console.log(users);
+//Test Admin
+console.log(adminOne);
+console.log(users);
+adminOne.deleteUser(userTwo);
+console.log(users);
