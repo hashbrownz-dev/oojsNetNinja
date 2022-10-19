@@ -42,7 +42,7 @@ class User{
     }
     updateScore(){
         this.score++;
-        console.log(`${this.email} score is now ${this.email}`);
+        console.log(`${this.email} score is now ${this.score}`);
         return this;
     }
 }
@@ -53,5 +53,6 @@ const userThree = new User('ninja@gaiden.com', 'Ryu Hayabusa');
 
 const users = [userOne, userTwo, userThree];
 for(let user of users){
-    user.login().logout();
+    //user.login().logout();
+    user.login().updateScore().updateScore().logout();
 }
